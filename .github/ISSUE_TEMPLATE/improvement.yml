@@ -1,0 +1,24 @@
+name: 方法改进
+description: 提议改进工作规程、模板、示例或使用说明
+title: "[改进] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: failure
+    attributes:
+      label: 当前失败方式
+      description: 现有方法在什么具体场景下不足？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议改动
+      description: 请说明修改内容及适用范围。
+    validations:
+      required: true
+  - type: textarea
+    id: counterexample
+    attributes:
+      label: 反例与边界
+      description: 哪些场景不应采用这项改动？

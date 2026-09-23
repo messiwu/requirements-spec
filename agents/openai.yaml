@@ -1,0 +1,7 @@
+interface:
+  display_name: "需求规格专家"
+  short_description: "补全、评审和维护可交接的产品需求基线"
+  default_prompt: "使用 $requirements-spec 将我的原始需求整理成架构、开发和测试可共同使用的需求基线。"
+
+policy:
+  allow_implicit_invocation: true

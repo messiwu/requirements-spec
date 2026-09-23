@@ -1,0 +1,31 @@
+name: 使用问题
+description: 报告可复现的需求处理错误或仓库缺陷
+title: "[问题] "
+labels: [bug]
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 原始场景
+      description: 请提供脱敏后的最小需求输入和使用方式。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+      description: agent 产生了什么结果，哪里出现了歧义或错误？
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+      description: 你期望什么行为，判断依据是什么？
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: 使用环境
+      description: 例如 Codex 版本、模型、skill 提交或版本。
