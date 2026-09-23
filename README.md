@@ -42,7 +42,7 @@ docs/requirements/<需求主题>/
 [INFERRED] 在 Codex 中可以让内置的 skill 安装器从 GitHub 安装：
 
 ```text
-$skill-installer install https://github.com/messiwu/requirements-spec
+$skill-installer install https://github.com/messiwu/requirements-spec/tree/main/skills/requirements-spec
 ```
 
 [COMMON] 安装新 skill 后，重新启动或新开 Codex 会话，确保技能目录被重新发现。
@@ -50,7 +50,7 @@ $skill-installer install https://github.com/messiwu/requirements-spec
 ### 使用 skills CLI
 
 ```bash
-npx skills add messiwu/requirements-spec -g -a codex -y
+npx skills add messiwu/requirements-spec --skill requirements-spec -g -a codex -y
 ```
 
 [INFERRED] 如果希望把 skill 随项目共享，去掉 `-g`，并按 CLI 的交互提示选择项目范围。
@@ -59,7 +59,7 @@ npx skills add messiwu/requirements-spec -g -a codex -y
 
 ```bash
 git clone https://github.com/messiwu/requirements-spec.git
-cp -R requirements-spec ~/.codex/skills/requirements-spec
+cp -R requirements-spec/skills/requirements-spec ~/.codex/skills/requirements-spec
 ```
 
 [COMMON] Windows 或其他 agent 的技能目录可能不同，请使用对应工具的用户级或项目级 skills 目录。
@@ -109,7 +109,7 @@ flowchart LR
 
 [INFERRED] 你不需要先手工填写模板。提供原始材料、现行基线和已知权限即可；agent 会读取适用的工作规程和模板，并继续推进不依赖未决问题的部分。
 
-[INFERRED] 更完整的交互步骤见[实际工作使用手册](references/06-实际工作使用手册.md)，设计边界见[设计依据与边界](references/01-设计依据与边界.md)。
+[INFERRED] 更完整的交互步骤见[实际工作使用手册](skills/requirements-spec/references/06-实际工作使用手册.md)，设计边界见[设计依据与边界](skills/requirements-spec/references/01-设计依据与边界.md)。
 
 ## 设计原则
 
@@ -124,11 +124,13 @@ flowchart LR
 
 ```text
 requirements-spec/
-├── SKILL.md                   Agent 入口与路由
-├── agents/openai.yaml         Codex 展示信息
-├── references/                方法、模板、示例和使用手册
-├── assets/                    可选的项目 AGENTS.md 片段
-├── scripts/                   项目接入与仓库校验脚本
+├── skills/requirements-spec/
+│   ├── SKILL.md               Agent 入口与路由
+│   ├── agents/openai.yaml     Codex 展示信息
+│   ├── references/            方法、模板、示例和使用手册
+│   ├── assets/                可选的项目 AGENTS.md 片段
+│   └── scripts/               项目接入脚本
+├── scripts/                   仓库校验脚本
 ├── .github/                   CI、Issue 与 PR 模板
 ├── CONTRIBUTING.md            贡献指南
 ├── CODE_OF_CONDUCT.md         社区行为准则
@@ -152,7 +154,7 @@ python3 scripts/validate_skill.py
 |---|---|
 | Codex | [COMPUTED] 已完成安装、显式调用与项目接入演练 |
 | Agent Skills 兼容工具 | [INFERRED] 目录结构遵循 `SKILL.md` 约定；尚未逐一完成行为验证 |
-| 独立文档使用 | [KNOWN] `references/` 内保留完整方法、模板和示例 |
+| 独立文档使用 | [KNOWN] `skills/requirements-spec/references/` 内保留完整方法、模板和示例 |
 
 ## 项目级接入
 

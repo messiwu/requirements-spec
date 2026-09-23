@@ -8,21 +8,22 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SKILL_ROOT = ROOT / "skills" / "requirements-spec"
 REQUIRED = [
-    "SKILL.md",
-    "LICENSE",
+    "skills/requirements-spec/SKILL.md",
+    "skills/requirements-spec/agents/openai.yaml",
+    "skills/requirements-spec/assets/AGENTS-项目片段.md",
+    "skills/requirements-spec/scripts/configure_project.py",
+    "skills/requirements-spec/references/01-设计依据与边界.md",
+    "skills/requirements-spec/references/02-agent工作规程.md",
+    "skills/requirements-spec/references/03-质量审查与交接.md",
+    "skills/requirements-spec/references/04-场景扩展与配图.md",
+    "skills/requirements-spec/references/模板/00-交接索引.md",
+    "skills/requirements-spec/references/模板/01-需求规格.md",
+    "skills/requirements-spec/references/模板/02-依据与决策.md",
+    "skills/requirements-spec/references/模板/03-验收与追溯.md",
     "README.md",
-    "agents/openai.yaml",
-    "assets/AGENTS-项目片段.md",
-    "scripts/configure_project.py",
-    "references/01-设计依据与边界.md",
-    "references/02-agent工作规程.md",
-    "references/03-质量审查与交接.md",
-    "references/04-场景扩展与配图.md",
-    "references/模板/00-交接索引.md",
-    "references/模板/01-需求规格.md",
-    "references/模板/02-依据与决策.md",
-    "references/模板/03-验收与追溯.md",
+    "LICENSE",
 ]
 
 
@@ -33,7 +34,7 @@ def check_required(errors: list[str]) -> None:
 
 
 def check_frontmatter(errors: list[str]) -> None:
-    content = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+    content = (SKILL_ROOT / "SKILL.md").read_text(encoding="utf-8")
     match = re.match(r"\A---\n(.*?)\n---\n", content, re.DOTALL)
     if not match:
         errors.append("SKILL.md 缺少有效 YAML frontmatter")
@@ -60,7 +61,7 @@ def check_links(errors: list[str]) -> int:
 
 
 def check_project_setup(errors: list[str]) -> None:
-    script = ROOT / "scripts" / "configure_project.py"
+    script = SKILL_ROOT / "scripts" / "configure_project.py"
     with tempfile.TemporaryDirectory() as temporary:
         project = Path(temporary) / "project"
         project.mkdir()
